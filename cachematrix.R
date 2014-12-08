@@ -5,7 +5,6 @@
 
 ## (i)          makeCacheMatrix: creates a special "matrix" object 
 ##              that can cache its inverse
-
 ## (ii)         set: re-initializes matrix object by
 ##              setting a different matrix value and setting CacInv NULL
 ## (iii)        get: Gets the value of matrix object
@@ -42,4 +41,4 @@ cacheSolve <- function( x = list() ) {
         x$setInv( Inv )
         Inv
 }
-## The code was run and the outputs were as expected
+## The codes were run and the output was as expected
