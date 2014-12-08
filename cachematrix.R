@@ -1,15 +1,44 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Caching the Inverse of a Matrix
+### Variables: x,y <- matrix objects
+### CacInv <- Cached Inverse
+### CalInv <- Calculated Inverse
 
-## Write a short comment describing this function
+## (i)          makeCacheMatrix <- Initializes a matrix object
+
+## (ii)         set <- reinitializes matrix object by
+##              setting a different matrix value and setting CacInv NULL
+## (iii)        get <- Gets the value of matrix object
+## (iv)         setInv <- Sets CalInv as CacInv
+## (v)          getInv <- Gets the current CacInv value
 
 makeCacheMatrix <- function(x = matrix()) {
-
+        CacInv <- NULL
+        set <- function(y){
+                x <<- y
+                CacInv <<- NULL
+        } 
+        get <- function() {x}
+        setInv <- function(CalInv){
+                CacInv <<- CalInv
+        }
+        getInv <- function() {CacInv}
+        list(set = set, get = get,
+             setInv = setInv,
+             getInv = getInv)
 }
 
-
-## Write a short comment describing this function
+## (vi)         cacheSolve <- Calculates matrix inverse if CacInv is NULL
+##              or returns CacInv
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        Inv <- x$getInv()
+        if(!is.null(Inv)) {
+                message("Getting cached Inverse")
+                return(Inv)
+        } ## In case the matrix values are modified, 
+        ## the inverse it set to NULL automatically by the set() function
+        mat <- x$get()
+        Inv <- solve(mat)
+        x$setInv(mat)
+        Inv
 }
