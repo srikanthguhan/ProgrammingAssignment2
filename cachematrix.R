@@ -11,6 +11,10 @@
 ## (iii)        get: Gets the value of matrix object
 ## (iv)         setInv: Sets CalInv as CacInv
 ## (v)          getInv: Gets the current CacInv value
+## (vi)         cacheSolve: Computes the inverse of the special "matrix" 
+##              returned by makeCacheMatrix above. If the inverse has 
+##              already been calculated (and the matrix has not changed),
+##              then the cachesolve will retrieve the inverse from the cache
 
 makeCacheMatrix <- function( x = matrix() ) {
         CacInv <- NULL
@@ -25,11 +29,6 @@ makeCacheMatrix <- function( x = matrix() ) {
         getInv <- function() { CacInv }
         list( set = set , get = get , setInv = setInv , getInv = getInv )
 }
-
-## (vi)         cacheSolve: Computes the inverse of the special "matrix" 
-##              returned by makeCacheMatrix above. If the inverse has 
-##              already been calculated (and the matrix has not changed),
-##              then the cachesolve will retrieve the inverse from the cache
 
 cacheSolve <- function( x = list() ) {
         Inv <- x$getInv()
